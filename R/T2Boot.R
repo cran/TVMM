@@ -1,13 +1,13 @@
-#' @title The robust T2 test (T2R).
-#' @description The robust version of the traditional T2 test using the comedian robust estimator.
+#' @title The parametric bootstrap T2 test (T2Boot).
+#' @description The parametric bootstrap version of the traditional T2 test.
 #'
 #' @param X a matrix n x p containing n observations and p variables. It should not contain missing values (NA).
 #' @param mu0 a vector containing the mean population to be tested.
+#' @param B the number of resamples bootstrap parametric which must be at least equal to 2000.
 #'
 #'
 #' @importFrom MASS mvrnorm
 #' @importFrom stats var pf
-#' @importFrom robustbase covComed
 #'
 #' @return the numerical value and the p-value of the test statistic.
 #'
@@ -24,19 +24,27 @@
 #' mu <- rep(0, times  = p)
 #' Sigma <- (1 - rho) * diag(p) + rho * matrix(1, p, p)
 #' mu0 <- rep(0.3271,times = p)
+#' B=2000
 #' X <- mvrnorm(n, mu, Sigma)
-#' T2Robust(X=X, mu0=mu0)
+#' T2Boot(X=X, mu0=mu0, B=2000)
 #'
 #' @export
-T2Robust <- function(X, mu0){
+T2Boot <- function(X, mu0, B)
+{
   n <- nrow(X)
   p <- ncol(X)
-  if (length(mu0)!= p  | (n<= p)) stop("The test cannot be performed.")
-  robust <- covComed(X)
-  Xs <- robust$raw.center
-  Ss <- robust$raw.cov
-  if (det(Ss)<= 0) stop("The covariance matrix must be positive definite.")
-  T2 <- n * t(Xs - mu0) %*% solve(Ss) %*% (Xs - mu0)
-  p.value <- 1 - pf((n - p) * T2 / ((n - 1) * p), p, n - p)
+  XS <- apply(X,2,mean)
+  SS <- var(X)
+  T2 <- n * t(XS - mu0) %*% solve(SS) %*% (XS - mu0)
+  T2v <- T2
+  for (i in 1:B)
+  {
+    Xb <- mvrnorm(n, mu0, SS)
+    Xsb <- apply(Xb,2,mean)
+    Ssb <- var(Xb)
+    T2b <- n * t(Xsb - mu0) %*% solve(Ssb) %*% (Xsb - mu0)
+    T2v <- c(T2v,T2b)
+  }
+  p.value <- length(T2v[as.numeric(T2) <= T2v]) / (B + 1)
   return(list(T2 = T2, valor.p = p.value))
 }

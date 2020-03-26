@@ -1,7 +1,7 @@
 Package: TVMM
 Type: Package
 Title: Multivariate Tests for the Vector of Means
-Version: 1.0
+Version: 2.0
 Authors@R: c(
     person("Henrique", "Jose de Paula Alves", email = "jpahenrique@gmail.com", role= c("aut", "cre")),
     person("Daniel", "Furtado Ferreira", email = "danielff@ufla.br", role= "aut"))
@@ -14,8 +14,8 @@ Imports: MASS, stats, robustbase
 Encoding: UTF-8
 License: GPL-2
 LazyData: TRUE
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 NeedsCompilation: no
-Packaged: 2020-03-19 12:46:23 UTC; Henrique
+Packaged: 2020-03-26 14:14:56 UTC; Henrique
 Repository: CRAN
-Date/Publication: 2020-03-19 13:50:07 UTC
+Date/Publication: 2020-03-26 15:30:02 UTC
