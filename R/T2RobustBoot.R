@@ -39,7 +39,7 @@ T2RobustBoot <- function(X, mu0, B){
   Xs <- robust$raw.center
   Ss <- robust$raw.cov
   if (det(Ss)<= 0) stop("The covariance matrix must be positive definite.")
-  T2 <- n * t(Xs - mu0) %*% solve(Ss) %*% (Xs - mu0)
+  T2 <- n * t(Xs - mu0) %*% ginv(Ss) %*% (Xs - mu0)
   T2v <- T2
   for (i in 1:B)
   {
@@ -47,7 +47,7 @@ T2RobustBoot <- function(X, mu0, B){
     robust <- covComed(Xb)
     Xsb <- robust$raw.center
     Ssb <- robust$raw.cov
-    T2b <- n * t(Xsb - mu0) %*% solve(Ssb) %*% (Xsb - mu0)
+    T2b <- n * t(Xsb - mu0) %*% ginv(Ssb) %*% (Xsb - mu0)
     T2v <- c(T2v,T2b)
   }
   p.value <- length(T2v[as.numeric(T2) <= T2v]) / (B + 1)

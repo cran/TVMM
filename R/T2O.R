@@ -4,7 +4,7 @@
 #' @param X a matrix n x p containing n observations and p variables. It should not contain missing values (NA).
 #' @param mu0 a vector containing the mean population to be tested.
 #'
-#' @importFrom MASS mvrnorm
+#' @importFrom MASS mvrnorm ginv
 #' @importFrom stats var pf
 #'
 #' @return the numerical value and the p-value of the test statistic.
@@ -33,7 +33,7 @@ T2O <- function(X, mu0){
   Xs <- apply(X,2,mean)
   Ss <- var(X)
   if (det(Ss)<= 0) stop("The covariance matrix must be positive definite.")
-  T2 <- n * t(Xs - mu0) %*% solve(Ss) %*% (Xs - mu0)
+  T2 <- n * t(Xs - mu0) %*% ginv(Ss) %*% (Xs - mu0)
   p.value <- 1 - pf((n - p) * T2 / ((n - 1) * p), p, n - p)
   return(list(T2 = T2, valor.p = p.value))
 }

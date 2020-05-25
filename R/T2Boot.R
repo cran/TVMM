@@ -6,7 +6,7 @@
 #' @param B the number of resamples bootstrap parametric which must be at least equal to 2000.
 #'
 #'
-#' @importFrom MASS mvrnorm
+#' @importFrom MASS mvrnorm ginv
 #' @importFrom stats var pf
 #'
 #' @return the numerical value and the p-value of the test statistic.
@@ -35,14 +35,14 @@ T2Boot <- function(X, mu0, B)
   p <- ncol(X)
   XS <- apply(X,2,mean)
   SS <- var(X)
-  T2 <- n * t(XS - mu0) %*% solve(SS) %*% (XS - mu0)
+  T2 <- n * t(XS - mu0) %*% ginv(SS) %*% (XS - mu0)
   T2v <- T2
   for (i in 1:B)
   {
     Xb <- mvrnorm(n, mu0, SS)
     Xsb <- apply(Xb,2,mean)
     Ssb <- var(Xb)
-    T2b <- n * t(Xsb - mu0) %*% solve(Ssb) %*% (Xsb - mu0)
+    T2b <- n * t(Xsb - mu0) %*% ginv(Ssb) %*% (Xsb - mu0)
     T2v <- c(T2v,T2b)
   }
   p.value <- length(T2v[as.numeric(T2) <= T2v]) / (B + 1)
