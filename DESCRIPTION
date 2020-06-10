@@ -1,7 +1,7 @@
 Package: TVMM
 Type: Package
 Title: Multivariate Tests for the Vector of Means
-Version: 3.0
+Version: 3.1
 Authors@R: c(
   person("Henrique", "Jose de Paula Alves", email = "jpahenrique@gmail.com", role= c("aut", "cre")),
   person("Ben", "Deivide de Oliveira Batista", email = "ben.deivide@gmail.com", role = "ctb"),
@@ -13,12 +13,12 @@ Maintainer: Henrique Jose de Paula Alves <jpahenrique@gmail.com>
 Description: This is a statistical tool interactive that provides multivariate statistical tests that are more powerful than traditional Hotelling T2 test and LRT (likelihood ratio test) for the vector of normal mean populations with and without contamination and non-normal populations (Henrique J. P. Alves & Daniel F. Ferreira (2019) <DOI: 10.1080/03610918.2019.1693596>).
 Depends: R (>= 3.1.0)
 Imports: tcltk, ggplot2, robustbase, tcltk2, tkrplot, gridExtra, stats,
-        base, utils, MASS, grDevices, DescToolsAddIns
+        utils, MASS, grDevices, DescToolsAddIns
 License: GPL-2
 Encoding: UTF-8
 LazyData: TRUE
 RoxygenNote: 7.1.0
 NeedsCompilation: no
-Packaged: 2020-05-24 22:02:50 UTC; Henrique
+Packaged: 2020-06-10 16:05:06 UTC; Henrique
 Repository: CRAN
-Date/Publication: 2020-05-25 04:30:03 UTC
+Date/Publication: 2020-06-10 20:10:02 UTC
