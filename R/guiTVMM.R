@@ -57,7 +57,7 @@ guiTVMM <- function(gui=TRUE) {
     # funcoes auxiliares que carregam os arquivos de dados em txt
     DaTa <- function(){
       fileName <- tclvalue(tkgetOpenFile(filetypes=gettext('{"txt Files" {".txt"}} {{All files} {"*"}}')))
-      if (fileName == "") return;
+      if (fileName == "") return();
       if(exists("fileName")) {
         sapply(2:3, function(i) tkentryconfigure(topMenu, i, state = "normal"))
       }
@@ -76,7 +76,7 @@ guiTVMM <- function(gui=TRUE) {
 
     MeanVec <- function(){
       fileName <- tclvalue(tkgetOpenFile(filetypes=gettext('{"txt" {".txt"}} {{All files} {"*"}}')))
-      if (fileName == "") return;
+      if (fileName == "") return();
       if(exists("fileName")) {
         sapply(2:3, function(i) tkentryconfigure(topMenu, i, state = "normal"))
       }
@@ -95,7 +95,7 @@ guiTVMM <- function(gui=TRUE) {
 
     DaTacsv <- function(){
       fileName <- tclvalue(tkgetOpenFile(filetypes=gettext('{"Excel Files" {".csv"}} {{All files} {"*"}}')))
-      if (fileName == "") return;
+      if (fileName == "") return();
       if(exists("fileName")) {
         sapply(2:3, function(i) tkentryconfigure(topMenu, i, state = "normal"))
       }
@@ -114,7 +114,7 @@ guiTVMM <- function(gui=TRUE) {
 
     MeanVeccsv <- function(){
       fileName <- tclvalue(tkgetOpenFile(filetypes=gettext('{"Excel Files" {".csv"}} {{All files} {"*"}}')))
-      if (fileName == "") return;
+      if (fileName == "") return();
       if(exists("fileName")) {
         sapply(2:3, function(i) tkentryconfigure(topMenu, i, state = "normal"))
       }
@@ -131,50 +131,6 @@ guiTVMM <- function(gui=TRUE) {
       sapply(0:5, function(i) tkentryconfigure(fileTestgraph, i, state = "disabled"))
     }
 
-
-
-    # getXlsx <- function(){
-    #   fileName <- tclvalue(tkgetOpenFile(filetypes=gettext('{"Excel Files" {".xlsx"}} {{All files} {"*"}}')))
-    #   if (fileName == "") return;
-    #   if(exists("fileName")) {
-    #     sapply(2:3, function(i) tkentryconfigure(topMenu, i, state = "normal"))
-    #   }
-    #   dat <- NULL
-    #   X <<- dat <- dat <<- as.matrix(read_excel(fileName,sheet = 1, col_names = TRUE, col_types = NULL, na = "", skip = 0))
-    #   mu0 <<- dat <- dat <<- as.matrix(read_excel(fileName,sheet = 2, col_names = TRUE, col_types = NULL, na = "", skip = 0))
-    #   pb <- tkProgressBar("Test progress bar", "",0, 100, 0)
-    #   u <- c(0, sort(runif(20, 0, 100)), 100)
-    #   for(i in u) {
-    #     Sys.sleep(0.1)
-    #     info <- sprintf("%d%% done", round(i))
-    #     setTkProgressBar(pb, i, sprintf("Data (%s)", info), info)
-    #   }
-    #   close(pb)
-    #   sapply(0:5, function(i) tkentryconfigure(fileTestgraph, i, state = "disabled"))
-    # }
-    #
-    # getXls <- function(){
-    #   fileName <- tclvalue(tkgetOpenFile(filetypes=gettext('{"Excel Files" {".xls"}} {{All files} {"*"}}')))
-    #   if(exists("fileName")) {
-    #     sapply(2:3, function(i) tkentryconfigure(topMenu, i, state = "normal"))
-    #   }
-    #   if (fileName=="") return;
-    #   dat <- NULL
-    #   # X <- NULL
-    #   # mu0 <- NULL
-    #   X <<- dat <- dat <<- as.matrix(read_excel(fileName,sheet = 1, col_names = TRUE, col_types = NULL, na = "", skip = 0))
-    #   mu0 <<- dat <- dat <<- as.matrix(read_excel(fileName,sheet = 2, col_names = TRUE, col_types = NULL, na = "", skip = 0))
-    #   pb <- tkProgressBar("Test progress bar", "",0, 100, 0)
-    #   u <- c(0, sort(runif(20, 0, 100)), 100)
-    #   for(i in u) {
-    #     Sys.sleep(0.1)
-    #     info <- sprintf("%d%% done", round(i))
-    #     setTkProgressBar(pb, i, sprintf("Data (%s)", info), info)
-    #   }
-    #   close(pb)
-    #   sapply(0:5, function(i) tkentryconfigure(fileTestgraph, i, state = "disabled"))
-    # }
-
     #fun??o que traz a op??o view/edit do menu file da GUI
     # X <- NULL
     editMatrixData <- function(){
@@ -188,13 +144,6 @@ guiTVMM <- function(gui=TRUE) {
       mu0 <<- dat <- dat <<- edit(mu0)
       return(mu0)
     }
-
-
-    # tests functions and plots
-    # calc <- function(){
-    #   results <- TVMM::T2O(X, mu0)
-    #   # return(results)
-    # }
 
     #teste T2 original
     T2OO <- function(){

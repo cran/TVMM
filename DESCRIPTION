@@ -1,7 +1,7 @@
 Package: TVMM
 Type: Package
 Title: Multivariate Tests for the Vector of Means
-Version: 3.1
+Version: 3.2
 Authors@R: c(
   person("Henrique", "Jose de Paula Alves", email = "jpahenrique@gmail.com", role= c("aut", "cre")),
   person("Ben", "Deivide de Oliveira Batista", email = "ben.deivide@gmail.com", role = "ctb"),
@@ -17,8 +17,8 @@ Imports: tcltk, ggplot2, robustbase, tcltk2, tkrplot, gridExtra, stats,
 License: GPL-2
 Encoding: UTF-8
 LazyData: TRUE
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2020-06-10 16:05:06 UTC; Henrique
+Packaged: 2020-10-07 10:22:17 UTC; Henrique
 Repository: CRAN
-Date/Publication: 2020-06-10 20:10:02 UTC
+Date/Publication: 2020-10-07 12:40:10 UTC
